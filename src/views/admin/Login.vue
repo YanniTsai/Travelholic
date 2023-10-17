@@ -4,7 +4,7 @@
       <div class="col-md-6">
         <h1 class="h3 text-center font-weight-normal">後台管理者登入</h1>
         <div class="mb-3">
-          <label for="loginEmail">Email:</label>
+          <label for="loginEmail">Email</label>
           <input
             type="email"
             id="loginEmail"
@@ -15,7 +15,7 @@
           />
         </div>
         <div class="mb-3">
-          <label for="loginPassword">Password:</label>
+          <label for="loginPassword">Password</label>
           <input
             type="password"
             id="loginPassword"
