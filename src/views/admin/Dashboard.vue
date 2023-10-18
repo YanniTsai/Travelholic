@@ -1,7 +1,17 @@
-<template>dashboard</template>
+<template>
+    <Navbar></Navbar>
+    <div class="container-fluid">
+        <router-view></router-view>
+    </div>
+</template>
 
 <script>
+import Navbar from '../../components/admin/Navbar.vue'
+
 export default {
+  components: {
+    Navbar
+  },
   created () {
     // 將存在 cookie 中的 token 取出
     /* eslint-disable */
