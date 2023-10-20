@@ -37,11 +37,13 @@
   </table>
   <ProductModal ref="productModal" :product="tempProduct" @update-product="updateProduct"></ProductModal>
   <DeleteModal ref="deleteModal" :title="tempProduct.title" @delete-item="deleteProduct"></DeleteModal>
+  <Pagination :pagination="pagination" @update-page="getProducts"></Pagination>
 </template>
 
 <script>
 import ProductModal from '../../components/admin/ProductModal.vue'
 import DeleteModal from '../../components/admin/DeleteModal.vue'
+import Pagination from '../../components/admin/Pagination.vue'
 
 export default {
   data () {
@@ -55,13 +57,14 @@ export default {
   },
   components: {
     ProductModal,
-    DeleteModal
+    DeleteModal,
+    Pagination
   },
   methods: {
-    getProducts () {
+    getProducts (page = 1) {
       this.isLoading = true
 
-      const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/admin/products`
+      const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/admin/products/?page=${page}`
 
       this.$http.get(api).then((res) => {
         this.isLoading = false
