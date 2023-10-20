@@ -35,6 +35,7 @@
                     v-model="tempProduct.category"
                     required
                   >
+                    <option value="category" selected disabled>商品類別</option>
                     <option value="Japan">日本</option>
                     <option value="Thailand">泰國</option>
                     <option value="Philippines">菲律賓</option>
@@ -49,6 +50,7 @@
                     v-model="tempProduct.unit"
                     required
                   >
+                    <option value="unit" selected disabled>購買單位</option>
                     <option value="people">人</option>
                   </select>
                 </div>
