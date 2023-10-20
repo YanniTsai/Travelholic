@@ -1,4 +1,5 @@
 <template>
+  <Loading :active="isLoading"></Loading>
   <div class="modal" tabindex="-1" ref="modal">
     <div class="modal-dialog modal-xl modal-dialog-scrollable">
       <div class="modal-content">
@@ -59,22 +60,24 @@
                 <div class="col-md-6 mb-2">
                   <label for="origin_price" class="form-label">原價</label>
                   <input
-                    type="text"
+                    type="number"
                     id="origin_price"
                     class="form-control"
                     placeholder="請輸入原價"
                     v-model="tempProduct.origin_price"
+                    min="0"
                     required
                   />
                 </div>
                 <div class="col-md-6 mb-2">
                   <label for="price" class="form-label">售價</label>
                   <input
-                    type="text"
+                    type="number"
                     id="price"
                     class="form-control"
                     placeholder="請輸入售價"
                     v-model="tempProduct.price"
+                    min="0"
                     required
                   />
                 </div>
@@ -188,6 +191,7 @@ export default {
         imagesUrl: []
       },
       tempImg: '',
+      isLoading: false,
       btnDisabled: false
     }
   },
@@ -206,6 +210,7 @@ export default {
       this.modal.hide()
     },
     uploadFile (inputElement) {
+      this.isLoading = true
       return new Promise((resolve, reject) => {
         const uploadedFile = inputElement.files[0]
         // console.dir(uploadedFile)
@@ -218,6 +223,7 @@ export default {
           console.log(res.data)
 
           if (res.data.success) {
+            this.isLoading = false
             this.tempImg = res.data.imageUrl
             resolve()
           } else {
@@ -230,14 +236,14 @@ export default {
     uploadMainImg (inputElement) {
       this.uploadFile(inputElement).then(() => {
         this.tempProduct.imageUrl = this.tempImg
-        console.log('主圖：', this.tempProduct.imageUrl)
+        // console.log('主圖：', this.tempProduct.imageUrl)
         this.tempImg = ''
       })
     },
     uploadOtherImg (inputElement) {
       this.uploadFile(inputElement).then(() => {
         this.tempProduct.imagesUrl.push(this.tempImg)
-        console.log('其他圖：', this.tempProduct.imagesUrl)
+        // console.log('其他圖：', this.tempProduct.imagesUrl)
         this.tempImg = ''
       })
     },
