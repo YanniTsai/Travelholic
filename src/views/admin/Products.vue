@@ -1,5 +1,5 @@
 <template>
-  <Loading :active="isLoading"></Loading>
+  <Loading :active="isLoading" style="z-index: 9999"></Loading>
   <div class="text-end">
     <button class="btn btn-primary" @click.prevent="openModal(true)">新增產品</button>
   </div>

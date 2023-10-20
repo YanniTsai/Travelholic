@@ -1,5 +1,5 @@
 <template>
-  <Loading :active="isLoading"></Loading>
+  <Loading :active="isLoading" style="z-index: 9999"></Loading>
   <div class="modal" tabindex="-1" ref="modal">
     <div class="modal-dialog modal-xl modal-dialog-scrollable">
       <div class="modal-content">
