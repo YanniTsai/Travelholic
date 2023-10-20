@@ -142,7 +142,8 @@
                 <input
                   class="form-check-input"
                   type="checkbox"
-                  value="is_enabled"
+                  :true-value="1"
+                  :false-value="0"
                   id="is_enabled"
                   v-model="tempProduct.is_enabled"
                 />
@@ -160,7 +161,7 @@
           >
             取消
           </button>
-          <button type="button" class="btn btn-primary">確認編輯</button>
+          <button type="button" class="btn btn-primary" @click="$emit('update-product', tempProduct)">確認編輯</button>
         </div>
       </div>
     </div>
@@ -171,6 +172,14 @@
 import Modal from 'bootstrap/js/dist/modal'
 
 export default {
+  props: {
+    product: {
+      type: Object,
+      default () {
+        return {}
+      }
+    }
+  },
   data () {
     return {
       modal: {},
@@ -178,6 +187,11 @@ export default {
         imagesUrl: []
       },
       tempImg: ''
+    }
+  },
+  watch: {
+    product () {
+      this.tempProduct = this.product
     }
   },
   methods: {

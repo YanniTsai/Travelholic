@@ -1,23 +1,23 @@
 <template>
   <div class="text-end">
-    <button class="btn btn-primary" @click.prevent="openModal">新增產品</button>
+    <button class="btn btn-primary" @click.prevent="openModal(true)">新增產品</button>
   </div>
   <table class="table mt-3">
     <thead>
       <tr>
-        <th width="200">商品圖</th>
-        <th width="400">商品名稱</th>
-        <th width="120">商品類別</th>
-        <th width="120" class="text-end">原價</th>
-        <th width="120" class="text-end">售價</th>
-        <th width="120" class="text-center">是否啟用</th>
-        <th width="120">編輯</th>
+        <th class="col-2">商品圖</th>
+        <th class="col-4">商品名稱</th>
+        <th class="col-1">商品類別</th>
+        <th class="col-1 text-end">原價</th>
+        <th class="col-1 text-end">售價</th>
+        <th class="col-1 text-center">是否啟用</th>
+        <th class="col-2">編輯</th>
       </tr>
     </thead>
     <tbody>
       <tr v-for="item in products" :key="item.id">
         <td>
-          <img :src="item.imageUrl" :alt="item.title" width="200" />
+          <img :src="item.imageUrl" :alt="item.title" class="w-100" />
         </td>
         <td>{{ item.title }}</td>
         <td>{{ item.category }}</td>
@@ -28,13 +28,13 @@
           <span class="text-secondary" v-else>未啟用</span>
         </td>
         <td>
-          <button class="btn btn-outline-primary btn-sm">編輯</button>
+          <button class="btn btn-outline-primary btn-sm" @click.prevent="openModal(false, item)">編輯</button>
           <button class="btn btn-outline-danger btn-sm">刪除</button>
         </td>
       </tr>
     </tbody>
   </table>
-  <ProductModal ref="productModal"></ProductModal>
+  <ProductModal ref="productModal" :product="tempProduct" @update-product="updateProduct"></ProductModal>
 </template>
 
 <script>
@@ -43,7 +43,10 @@ import ProductModal from '../../components/admin/ProductModal.vue'
 export default {
   data () {
     return {
-      products: []
+      products: [],
+      pagination: {},
+      tempProduct: {},
+      isNew: false
     }
   },
   components: {
@@ -51,15 +54,39 @@ export default {
   },
   methods: {
     getProducts () {
-      const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/admin/products/all`
+      const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/admin/products`
 
       this.$http.get(api).then((res) => {
         console.log(res.data)
         this.products = res.data.products
+        this.pagination = res.data.pagination
       })
     },
-    openModal () {
+    openModal (isNew, item) {
+      if (isNew) {
+        this.tempProduct = {}
+      } else {
+        this.tempProduct = { ...item }
+      }
+      this.isNew = isNew
       this.$refs.productModal.showModal()
+    },
+    updateProduct (item) {
+      this.tempProduct = item
+      // 新增商品
+      let api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/admin/product`
+      let httpMethod = 'post'
+
+      if (!this.isNew) {
+        api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/admin/product/${item.id}`
+        httpMethod = 'put'
+      }
+
+      this.$http[httpMethod](api, { data: this.tempProduct }).then((res) => {
+        console.log(res.data)
+        this.$refs.productModal.hideModal()
+        this.getProducts()
+      })
     }
   },
   created () {
