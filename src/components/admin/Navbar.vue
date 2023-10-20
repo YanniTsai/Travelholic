@@ -15,15 +15,10 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarText">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">產品管理</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">訂單管理</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">文章管理</a>
-          </li>
+          <router-link to="/dashboard/products" class="nav-link" :class="{'fw-bold': $route.path === '/dashboard/products'}">產品管理</router-link>
+          <router-link to="/dashboard/orders" class="nav-link" :class="{'fw-bold': $route.path === '/dashboard/orders'}">訂單管理</router-link>
+          <router-link to="/dashboard/coupons" class="nav-link" :class="{'fw-bold': $route.path === '/dashboard/coupons'}">優惠券管理</router-link>
+          <router-link to="/dashboard/articles" class="nav-link" :class="{'fw-bold': $route.path === '/dashboard/articles'}">文章管理</router-link>
         </ul>
         <a href="#"  @click.prevent="logout" class="nav-link">登出</a>
       </div>
