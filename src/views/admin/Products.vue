@@ -1,6 +1,6 @@
 <template>
   <div class="text-end">
-    <button class="btn btn-primary">新增產品</button>
+    <button class="btn btn-primary" @click.prevent="openModal">新增產品</button>
   </div>
   <table class="table mt-3">
     <thead>
@@ -34,14 +34,20 @@
       </tr>
     </tbody>
   </table>
+  <ProductModal ref="productModal"></ProductModal>
 </template>
 
 <script>
+import ProductModal from '../../components/admin/ProductModal.vue'
+
 export default {
   data () {
     return {
       products: []
     }
+  },
+  components: {
+    ProductModal
   },
   methods: {
     getProducts () {
@@ -51,6 +57,9 @@ export default {
         console.log(res.data)
         this.products = res.data.products
       })
+    },
+    openModal () {
+      this.$refs.productModal.showModal()
     }
   },
   created () {
