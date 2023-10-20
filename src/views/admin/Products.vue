@@ -30,16 +30,18 @@
         </td>
         <td>
           <button class="btn btn-outline-primary btn-sm" @click.prevent="openModal(false, item)">編輯</button>
-          <button class="btn btn-outline-danger btn-sm">刪除</button>
+          <button class="btn btn-outline-danger btn-sm" @click.prevent="openDeleteModal(item)">刪除</button>
         </td>
       </tr>
     </tbody>
   </table>
   <ProductModal ref="productModal" :product="tempProduct" @update-product="updateProduct"></ProductModal>
+  <DeleteModal ref="deleteModal" :title="tempProduct.title" @delete-item="deleteProduct"></DeleteModal>
 </template>
 
 <script>
 import ProductModal from '../../components/admin/ProductModal.vue'
+import DeleteModal from '../../components/admin/DeleteModal.vue'
 
 export default {
   data () {
@@ -52,7 +54,8 @@ export default {
     }
   },
   components: {
-    ProductModal
+    ProductModal,
+    DeleteModal
   },
   methods: {
     getProducts () {
@@ -93,6 +96,24 @@ export default {
         this.isLoading = false
         console.log(res.data)
         this.$refs.productModal.hideModal()
+        this.getProducts()
+      })
+    },
+    openDeleteModal (item) {
+      this.tempProduct = { ...item }
+      this.$refs.deleteModal.showModal()
+    },
+    deleteProduct () {
+      this.isLoading = true
+
+      const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/admin/product/${this.tempProduct.id}`
+
+      this.$http.delete(api).then((res) => {
+        this.isLoading = false
+
+        console.log(res.data)
+
+        this.$refs.deleteModal.hideModal()
         this.getProducts()
       })
     }
