@@ -158,10 +158,11 @@
             type="button"
             class="btn btn-secondary"
             data-bs-dismiss="modal"
+            :disabled="btnDisabled"
           >
             取消
           </button>
-          <button type="button" class="btn btn-primary" @click="$emit('update-product', tempProduct)">確認編輯</button>
+          <button type="button" class="btn btn-primary" :disabled="btnDisabled" @click="updateProduct">確認編輯</button>
         </div>
       </div>
     </div>
@@ -186,7 +187,8 @@ export default {
       tempProduct: {
         imagesUrl: []
       },
-      tempImg: ''
+      tempImg: '',
+      btnDisabled: false
     }
   },
   watch: {
@@ -194,8 +196,10 @@ export default {
       this.tempProduct = this.product
     }
   },
+  emits: ['update-product'],
   methods: {
     showModal () {
+      this.btnDisabled = false
       this.modal.show()
     },
     hideModal () {
@@ -236,6 +240,10 @@ export default {
         console.log('其他圖：', this.tempProduct.imagesUrl)
         this.tempImg = ''
       })
+    },
+    updateProduct () {
+      this.btnDisabled = true
+      this.$emit('update-product', this.tempProduct)
     }
   },
   mounted () {
