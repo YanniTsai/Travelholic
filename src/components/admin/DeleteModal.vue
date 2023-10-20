@@ -9,6 +9,7 @@
             class="btn-close"
             data-bs-dismiss="modal"
             aria-label="Close"
+            :disabled="btnDisabled"
           ></button>
         </div>
         <div class="modal-body">
@@ -19,6 +20,7 @@
             type="button"
             class="btn btn-secondary"
             data-bs-dismiss="modal"
+            :disabled="btnDisabled"
           >
             取消
           </button>
