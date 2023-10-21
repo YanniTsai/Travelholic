@@ -25,8 +25,8 @@
             <span class="text-secondary" v-else>未啟用</span>
         </td>
         <td>
-          <button class="btn btn-outline-primary" @click.prevent="openModal(false, item)">編輯</button>
-          <button class="btn btn-outline-danger" @click.prevent="openDeleteModal(item)">刪除</button>
+          <button class="btn btn-outline-primary btn-sm" @click.prevent="openModal(false, item)">編輯</button>
+          <button class="btn btn-outline-danger btn-sm" @click.prevent="openDeleteModal(item)">刪除</button>
         </td>
       </tr>
     </tbody>
