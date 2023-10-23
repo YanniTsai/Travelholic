@@ -75,7 +75,9 @@ export default {
     },
     openModal (isNew, item) {
       if (isNew) {
-        this.tempProduct = {}
+        this.tempProduct = {
+          imagesUrl: []
+        }
       } else {
         this.tempProduct = { ...item }
       }
