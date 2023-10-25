@@ -49,9 +49,12 @@
         <div class="col-md-9">
             <div class="row justify-content-center justify-content-sm-start">
                 <div class="card col-12 col-md-3 m-2 p-0" v-for="(item, key) in products" :key="key">
-                    <div class="img-more">
-                        <img :src="item.imageUrl" class="card-img-top" :alt="item.title">
-
+                    <div class="card-img">
+                        <img :src="item.imageUrl" :alt="item.title">
+                        <div class="explore-more d-flex justify-content-evenly align-items-center">
+                          <button class="btn btn-outline-light" @click.prevent="toProductInfo(item.id)">查看更多</button>
+                          <button class="btn btn-outline-light" @click.prevent="openAddToCartModal(item)">加入購物車</button>
+                        </div>
                     </div>
                     <div class="card-body m-1 d-flex flex-column justify-content-between">
                         <div>
@@ -61,7 +64,6 @@
                         <div class="d-flex justify-content-between align-items-center">
                             <span class="origin-price">$ {{ item.origin_price }}</span>
                             <span class="orange-price-lg">$ {{ item.price }}</span>
-                            <button class="btn" @click.prevent="toProductInfo(item.id)">more</button>
                         </div>
                     </div>
                 </div>
@@ -70,9 +72,11 @@
         </div>
     </div>
 </div>
+<AddToCartModal ref="addToCartModal" :product="tempProduct" @add-to-cart="addToCart"></AddToCartModal>
 </template>
 
 <script>
+import AddToCartModal from '@/components/front/AddToCartModal.vue'
 import Pagination from '../../components/front/Front_Pagination.vue'
 
 export default {
@@ -80,10 +84,12 @@ export default {
     return {
       products: {},
       pagination: {},
+      tempProduct: {},
       isLoading: false
     }
   },
   components: {
+    AddToCartModal,
     Pagination
   },
   methods: {
@@ -101,6 +107,26 @@ export default {
     },
     toProductInfo (id) {
       this.$router.push(`/products/${id}`)
+    },
+    openAddToCartModal (item) {
+      this.tempProduct = item
+      this.$refs.addToCartModal.showModal()
+    },
+    addToCart (num) {
+      this.isLoading = true
+
+      const product = {
+        product_id: this.tempProduct.id,
+        qty: parseInt(num)
+      }
+      const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/cart`
+
+      this.$http.post(api, { data: product }).then((res) => {
+        this.isLoading = false
+
+        console.log(res.data)
+        this.$refs.addToCartModal.hideModal()
+      })
     }
   },
   created () {
