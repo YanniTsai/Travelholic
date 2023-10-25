@@ -1,6 +1,6 @@
 <template>
     <Loading :active="isLoading" style="z-index: 9999"></Loading>
-    <div class="main-img mb-3">
+    <div class="product-main-img mb-3">
         <img :src="product.imageUrl" :alt="product.title">
     </div>
     <div>
@@ -19,8 +19,8 @@
                     <div class="mx-2">{{ product.description }}</div>
                 </div>
                 <div>
-                    <div class="originprice text-secondary">原價：$ {{ product.origin_price }}</div>
-                    <div class="discontprice">優惠價：$ {{ product.price }}</div>
+                    <div class="origin-price">原價：$ {{ product.origin_price }}</div>
+                    <div class="orange-price-lg">優惠價：$ {{ product.price }}</div>
                 </div>
                 <div>
                     <div class="mb-3">
@@ -37,8 +37,8 @@
                             <i class="bi bi-heart"></i>
                         </button>
                         <div class="d-flex justify-content-between">
-                            <button class="btn btn-cart m-1" @click.prevent="addToCart">加入購物車</button>
-                            <button class="btn btn-checkout m-1" @click.prevent="buyDirectly">直接購買</button>
+                            <button class="btn yellow-btn m-1" @click.prevent="addToCart">加入購物車</button>
+                            <button class="btn orange-btn m-1" @click.prevent="buyDirectly">直接購買</button>
                         </div>
                     </div>
                 </div>
@@ -47,7 +47,7 @@
         </div>
         <!-- 行程介紹 -->
         <div class="mb-3">
-            <div class="intro-title">
+            <div class="info-title">
                 <i class="bi bi-brightness-high"></i>
                 行程介紹
             </div>
@@ -57,7 +57,7 @@
         </div>
         <!-- 條款 -->
         <div class="mb-3">
-            <div class="intro-title">
+            <div class="info-title">
                 <i class="bi bi-info-circle"></i>
                 注意事項
             </div>
@@ -136,7 +136,7 @@ export default {
         console.log(res.data)
       })
     },
-    buyDirectly () {
+    async buyDirectly () {
       this.addToCart()
       this.$router.push('/cart')
     }
@@ -147,46 +147,3 @@ export default {
   }
 }
 </script>
-
-<style lang="scss">
-@import '../../assets/helpers/color';
-
-.main-img{
-  max-height: 600px;
-  overflow: hidden;
-
-  img{
-    width: 100%;
-  }
-}
-
-.originprice{
-  text-decoration: line-through;
-}
-
-.discontprice{
-  color: $orange;
-  font-size: 22px;
-}
-
-.btn-cart{
-  background: $light-yellow;
-  &:hover{
-    background: $main-yellow;
-  }
-}
-
-.btn-checkout{
-  background: $light-orange;
-  &:hover{
-    background: $orange;
-  }
-}
-
-.intro-title{
-  color: $brown;
-  font-size: 24px;
-  display: inline-block;
-  border-bottom: 5px solid $light-yellow;
-}
-</style>

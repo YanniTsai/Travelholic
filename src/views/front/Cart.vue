@@ -4,7 +4,7 @@
         <h3 class="m-3">購物車</h3>
         <div class="d-flex flex-column align-items-center" v-if="cartlength === 0">
             <div>購物車目前沒有商品！</div>
-            <button class="btn coupon-btn">
+            <button class="btn yellow-btn">
                 <router-link to="/products" class="text-dark text-decoration-none">探索行程</router-link>
             </button>
         </div>
@@ -43,7 +43,7 @@
                     <div class="mb-3">套用優惠</div>
                     <div class="input-group mb-1">
                         <input type="text" class="form-control" placeholder="輸入優惠碼" aria-label="coupon_code" aria-describedby="usecoupon" v-model="coupon_code">
-                        <button class="btn coupon-btn" type="button" id="usecoupon" @click.prevent="addCoupon">使用</button>
+                        <button class="btn yellow-btn border" type="button" id="usecoupon" @click.prevent="addCoupon">使用</button>
                     </div>
                     <div class="text-success ms-3" v-if="discont">優惠碼：{{ coupon_code }}&ensp;<i class="bi bi-check2-circle"></i></div>
                 </div>
@@ -55,9 +55,9 @@
                             <span class="fw-bold" :class="{'text-decoration-line-through': discont}">{{ $filters.currency(cart.total) }} 元</span>
                         </div>
                         <div v-if="discont">
-                            <span class="final-price">優惠價： {{ $filters.currency(cart.final_total) }} 元</span>
+                            <span class="orange-price">優惠價： {{ $filters.currency(cart.final_total) }} 元</span>
                         </div>
-                        <button class="btn btn-checkout w-100 mt-3">
+                        <button class="btn orange-btn w-100 mt-3">
                           <router-link to="/order" class="text-decoration-none text-dark">
                             結帳去
                             <i class="bi bi-arrow-right"></i>
@@ -161,40 +161,3 @@ export default {
   }
 }
 </script>
-
-<style lang="scss">
-@import '../../assets/helpers/color';
-
-.cart-list{
-  height: 100vh;
-  overflow: auto;
-}
-.cart-item{
-  border: 1px solid #dbd5d5f5;
-  border-radius: 10px;
-
-  img{
-    max-height: 200px;
-  }
-}
-
-.coupon-btn{
-    border: 1px solid #dee2e6;
-    background: $light-yellow;
-
-    &:hover{
-      background: $main-yellow;
-    }
-}
-
-.btn-checkout{
-  background: $light-orange;
-  &:hover{
-    background: $orange;
-  }
-}
-
-.final-price{
-  color: $orange;
-}
-</style>

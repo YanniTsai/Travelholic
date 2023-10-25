@@ -53,12 +53,7 @@
 </template>
 
 <style lang="scss">
-.carousel{
-  height: 100vh;
-}
-.carousel-item img{
-  height: 100vh;
-}
+
  .info-left{
     // position: relative;
   // background-image: url();

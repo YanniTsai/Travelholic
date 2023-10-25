@@ -70,7 +70,7 @@
             ></textarea>
           </div>
           <div class="text-end mb-3">
-            <button class="btn btn-order">送出訂單</button>
+            <button class="btn orange-btn">送出訂單</button>
           </div>
         </VForm>
       </div>
@@ -137,14 +137,3 @@ export default {
   }
 }
 </script>
-
-<style lang="scss">
-@import '../../assets/helpers/color';
-
-.btn-order{
-  background: $light-orange;
-  &:hover{
-    background: $orange;
-  }
-}
-</style>

@@ -18,7 +18,7 @@
       </button>
       <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
         <ul class="navbar-nav">
-          <router-link to="/products" class="nav-link">探索行程</router-link>
+          <router-link to="/products" class="nav-link link-effect">探索行程</router-link>
           <li class="nav-link">精彩文章</li>
           <li class="nav-link">我的最愛</li>
           <div class="dropdown">
@@ -46,7 +46,7 @@
                       <table class="col-6">
                         <tr class="fw-bold">{{ item.product.title }}</tr>
                         <tr>{{ item.qty }} {{ item.product.unit }}</tr>
-                        <tr class="price">{{ $filters.currency(item.total) }} 元</tr>
+                        <tr class="orange-price">{{ $filters.currency(item.total) }} 元</tr>
                       </table>
                     </li>
                   </router-link>
@@ -56,7 +56,7 @@
                     <span>總計：</span>
                     <span class="price">{{ $filters.currency(cart.total) }} 元</span>
                   </div>
-                  <button class="btn dropdown-btn" @click.prevent="goToCart">查看購物車</button>
+                  <button class="btn yellow-btn" @click.prevent="goToCart">查看購物車</button>
                 </div>
               </div>
             </div>
@@ -102,34 +102,3 @@ export default {
   }
 }
 </script>
-
-<style lang="scss">
-@import '../../assets/helpers/color';
-
-.navbar {
-  background: $main-yellow;
-}
-.nav-link {
-  color: $brown;
-}
-.dropdown-menu{
-  width: 360px;
-  max-height: 500px;
-  overflow: auto;
-  right: 0 !important;
-  left: auto !important;
-
-  img{
-    height: 100px;
-  }
-}
-.price{
-  color: $orange;
-}
-.dropdown-btn{
-  background: $light-yellow;
-  &:hover{
-    background: $main-yellow;
-  }
-}
-</style>

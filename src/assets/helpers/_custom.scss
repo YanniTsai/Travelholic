@@ -1,0 +1,131 @@
+$main-yellow: #fcf03c;
+$light-yellow: #f9ee58;
+$main-orange: #f86d09;
+$light-orange:#ff9d58;
+$brown: #513a31;
+$light-brown: #675a55;
+
+.navbar {
+  background: $main-yellow;
+  
+  .nav-link {
+    color: $brown;
+    transition: 0.3s;
+
+    &:hover{
+      transform: translateY(-5px);
+    }
+  }
+}
+
+// navbar-cart dropdown menu
+.dropdown-menu{
+  width: 360px;
+  max-height: 500px;
+  overflow: auto;
+  right: 0 !important;
+  left: auto !important;
+
+  img{
+    height: 100px;
+  }
+}
+
+// home page
+.carousel{
+  height: 100vh;
+
+  img{
+  height: 100vh;
+  // overflow: hidden;
+
+    @include media-breakpoint-up(md) {
+      width: 100vw;
+    }
+  }
+
+}
+
+// card in product page
+.card{
+  width: 300px;
+  height: 400px;
+  transition: 0.3s;
+
+  img{
+    height: 200px;
+  }
+
+  &:hover{
+    transform: translateY(-5px);
+  }
+}
+
+// cart page
+.cart-list{
+  height: 100vh;
+  overflow: auto;
+}
+
+.cart-item{
+  border: 1px solid #dbd5d5f5;
+  border-radius: 10px;
+
+  img{
+    max-height: 200px;
+  }
+}
+
+// product-info page
+.product-main-img{
+  max-height: 600px;
+  overflow: hidden;
+
+  img{
+    width: 100%;
+  }
+}
+
+.info-title{
+  color: $brown;
+  font-size: 24px;
+  display: inline-block;
+  border-bottom: 5px solid $light-yellow;
+}
+
+// footer
+.footer{
+  height: 80px;
+}
+
+.yellow-btn{
+    background: $light-yellow;
+    
+    &:hover{
+      background: $main-yellow;
+    }
+}
+
+.orange-btn{
+  background: $light-orange;
+
+  &:hover{
+    background: $main-orange;
+  }
+}
+
+.origin-price{
+  text-decoration: line-through;
+  color: #6c757d; //color: $secondary
+}
+
+// discont price
+.orange-price{
+  color: $main-orange;
+}
+
+.orange-price-lg{
+  color: $main-orange;
+  font-size: 22px;
+}
+

@@ -59,8 +59,8 @@
                             <p class="card-text">{{ item.description }}</p>
                         </div>
                         <div class="d-flex justify-content-between align-items-center">
-                            <span class="originprice text-secondary">$ {{ item.origin_price }}</span>
-                            <span class="discontprice">$ {{ item.price }}</span>
+                            <span class="origin-price">$ {{ item.origin_price }}</span>
+                            <span class="orange-price-lg">$ {{ item.price }}</span>
                             <button class="btn" @click.prevent="toProductInfo(item.id)">more</button>
                         </div>
                     </div>
@@ -108,27 +108,3 @@ export default {
   }
 }
 </script>
-
-<style lang="scss">
-@import '../../assets/helpers/color';
-
-.card{
-  width: 300px;
-  height: 400px;
-  img{
-    height: 200px;
-  }
-  transition: 0.3s;
-  &:hover{
-    transform: translateY(-5px);
-  }
-}
-
-.originprice{
-  text-decoration: line-through;
-}
-.discontprice{
-  color: $orange;
-  font-size: 22px;
-}
-</style>
