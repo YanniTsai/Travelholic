@@ -55,20 +55,22 @@
               </div>
             </div>
           </div>
+        </div>
+        <div class="modal-footer justify-content-between">
           <div class="form-check">
             <input type="checkbox" id="isPublic" class="form-check-input"  v-model="tempArticle.isPublic" />
             <label for="isPublic" class="form-check-label">公開文章</label>
           </div>
-        </div>
-        <div class="modal-footer">
-          <button
-            type="button"
-            class="btn btn-secondary"
-            data-bs-dismiss="modal"
-          >
-            取消
-          </button>
-          <button type="button" class="btn btn-primary" @click.prevent="emitArticle">確定編輯</button>
+          <div>
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              取消
+            </button>
+            <button type="button" class="btn btn-primary ms-2" @click.prevent="emitArticle">確定編輯</button>
+          </div>
         </div>
       </div>
     </div>

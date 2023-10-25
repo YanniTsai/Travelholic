@@ -28,29 +28,29 @@
             <label for="due_date" class="form-label">到期日</label>
             <input type="date" id="due_date" class="form-control" v-model="due_date" />
           </div>
-          <div class="mb-3">
-            <div class="form-check">
-                <input
-                type="checkbox"
-                id="is_enabled"
-                class="form-check-input"
-                :true-value="1"
-                :false-value="0"
-                v-model="tempCoupon.is_enabled"
-                />
-                <label for="is_enabled" class="form-check-label">是否啟用</label>
-            </div>
-          </div>
         </div>
-        <div class="modal-footer">
-          <button
-            type="button"
-            class="btn btn-secondary"
-            data-bs-dismiss="modal"
-          >
-            取消
-          </button>
-          <button type="button" class="btn btn-primary" @click="$emit('update-coupon', tempCoupon)">確定編輯</button>
+        <div class="modal-footer justify-content-between">
+          <div class="form-check">
+              <input
+              type="checkbox"
+              id="is_enabled"
+              class="form-check-input"
+              :true-value="1"
+              :false-value="0"
+              v-model="tempCoupon.is_enabled"
+              />
+              <label for="is_enabled" class="form-check-label">是否啟用</label>
+          </div>
+          <div>
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              取消
+            </button>
+            <button type="button" class="btn btn-primary ms-2" @click="$emit('update-coupon', tempCoupon)">確定編輯</button>
+          </div>
         </div>
       </div>
     </div>

@@ -139,33 +139,32 @@
               </div>
             </div>
           </div>
-          <!-- 是否啟用 -->
-          <div>
-              <div class="form-check">
-                <input
-                  class="form-check-input"
-                  type="checkbox"
-                  :true-value="1"
-                  :false-value="0"
-                  id="is_enabled"
-                  v-model="tempProduct.is_enabled"
-                />
-                <label class="form-check-label" for="is_enabled">
-                  啟用商品
-                </label>
-              </div>
+          <div class="modal-footer justify-content-between">
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                :true-value="1"
+                :false-value="0"
+                id="is_enabled"
+                v-model="tempProduct.is_enabled"
+              />
+              <label class="form-check-label" for="is_enabled">
+                啟用商品
+              </label>
+            </div>
+            <div>
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+                :disabled="btnDisabled"
+              >
+                取消
+              </button>
+              <button type="button" class="btn btn-primary ms-2" :disabled="btnDisabled" @click="updateProduct">確認編輯</button>
             </div>
           </div>
-        <div class="modal-footer">
-          <button
-            type="button"
-            class="btn btn-secondary"
-            data-bs-dismiss="modal"
-            :disabled="btnDisabled"
-          >
-            取消
-          </button>
-          <button type="button" class="btn btn-primary" :disabled="btnDisabled" @click="updateProduct">確認編輯</button>
         </div>
       </div>
     </div>
