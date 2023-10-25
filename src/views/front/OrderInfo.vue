@@ -75,18 +75,25 @@
         </VForm>
       </div>
       <div class="col-md-4">
-        <div class="order-item">
-          <div class="mb-3 fs-5">訂購內容</div>
-          <table class="table">
-            <tr v-for="item in cart.carts" :key="item.id" class="lh-lg">
-              <td class="col-7">{{ item.product.title }}</td>
-              <td class="col-2">{{ item.qty }}</td>
-              <td class="col-3">$ {{ $filters.currency(item.product.price) }}</td>
-            </tr>
-          </table>
-          <div class="text-end">
-            訂單總金額： $ {{ $filters.currency(cart.final_total) }}
-          </div>
+        <div class="mb-3 fs-5">訂購內容</div>
+        <table class="table mb-3">
+          <tr>
+            <th>商品名稱</th>
+            <th class="text-center">數量</th>
+            <th>金額</th>
+          </tr>
+          <tr v-for="item in cart.carts" :key="item.id" class="lh-lg">
+            <td class="col-7">{{ item.product.title }}</td>
+            <td class="col-2 text-center">{{ item.qty }}</td>
+            <td class="col-3">$ {{ $filters.currency(item.product.price) }}</td>
+          </tr>
+        </table>
+        <div class="mb-3" v-if="coupon_code">
+          <div class="text-success">已使用優惠碼： {{ coupon_code }} （整單{{ coupon_percent / 10 }}折）</div>
+        </div>
+        <div class="text-end">
+          <div :class="{'origin-price': coupon_code}">訂單總金額： $ {{ $filters.currency(cart.total) }}</div>
+          <div class="orange-price" v-if="coupon_code">訂單總金額： $ {{ $filters.currency(cart.final_total) }}</div>
         </div>
       </div>
     </div>
@@ -98,6 +105,8 @@ export default {
   data () {
     return {
       cart: {},
+      coupon_code: '',
+      coupon_percent: 0,
       form: {
         user: {
           name: '',
@@ -119,6 +128,11 @@ export default {
         console.log(res.data)
 
         this.cart = res.data.data
+
+        if (res.data.data.carts[0].coupon) {
+          this.coupon_code = res.data.data.carts[0].coupon.code
+          this.coupon_percent = res.data.data.carts[0].coupon.percent
+        }
       })
     },
     createOrder () {
