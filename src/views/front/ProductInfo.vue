@@ -126,19 +126,32 @@ export default {
       })
     },
     addToCart () {
-      const product = {
-        product_id: this.product.id,
-        qty: parseInt(this.qty)
-      }
-      const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/cart`
+      this.isLoading = true
 
-      this.$http.post(api, { data: product }).then((res) => {
-        console.log(res.data)
+      return new Promise((resolve, reject) => {
+        const product = {
+          product_id: this.product.id,
+          qty: parseInt(this.qty)
+        }
+        const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/cart`
+
+        this.$http.post(api, { data: product }).then((res) => {
+          this.isLoading = false
+
+          if (res.data) {
+            console.log(res.data)
+            resolve()
+          } else {
+            const error = new Error('加入購物車失敗')
+            reject(error)
+          }
+        })
       })
     },
-    async buyDirectly () {
-      this.addToCart()
-      this.$router.push('/cart')
+    buyDirectly () {
+      this.addToCart().then(() => {
+        this.$router.push('/cart')
+      })
     }
   },
   created () {
