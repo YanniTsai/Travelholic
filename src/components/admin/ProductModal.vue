@@ -4,7 +4,7 @@
     <div class="modal-dialog modal-xl modal-dialog-scrollable">
       <div class="modal-content">
         <div class="modal-header bg-dark text-white">
-          <h5 class="modal-title">新增商品</h5>
+          <h5 class="modal-title">編輯商品</h5>
           <button
             type="button"
             class="btn-close"
@@ -105,27 +105,35 @@
             <div class="col-md-4">
               <div class="mb-2">
                 <label for="imageUrl" class="form-label">商品主圖</label>
-                <input
-                  type="file"
-                  id="imageUrl"
-                  class="form-control"
-                  ref="imageUrl"
-                  @change="uploadMainImg($refs.imageUrl)"
-                />
+                <div class="input-group">
+                    <input
+                      type="file"
+                      id="imageUrl"
+                      class="form-control"
+                      ref="imageUrl"
+                      @change="uploadMainImg('imageUrl')"
+                    />
+                    <button class="btn btn-danger" @click.prevent="deleteMainImg">刪除</button>
+                </div>
                 <div class="mt-2" v-if="tempProduct.imageUrl">
                   <img :src="tempProduct.imageUrl" alt="商品主圖" width="200" />
                 </div>
               </div>
               <div>
                 <label for="imagesUrl" class="form-label">其他圖片</label>
-                <div>
-                  <input
-                    type="file"
-                    id="imageUrl"
-                    class="form-control"
-                    ref="imagesUrl"
-                    @change="uploadOtherImg($refs.imagesUrl)"
-                  />
+                <div v-for="(item, key) in tempProduct.imagesUrl" :key="key">
+                  <div class="input-group mb-2">
+                    <input
+                      type="file"
+                      id="imagesUrl"
+                      class="form-control"
+                      @change="uploadOtherImg($event, key)"
+                    />
+                    <button class="btn btn-danger" @click.prevent="tempProduct.imagesUrl.splice(key, 1)">刪除</button>
+                  </div>
+                </div>
+                <div class="text-end">
+                  <button class="btn btn-primary" @click.prevent="tempProduct.imagesUrl.push('')">新增其他圖片</button>
                 </div>
                 <div class="mt-2" v-if="tempProduct.imagesUrl">
                   <div v-for="(item, key) in tempProduct.imagesUrl" :key="key">
@@ -133,37 +141,39 @@
                       :src="tempProduct.imagesUrl[key]"
                       alt="商品圖片"
                       width="200"
+                      class="mb-2"
+                      v-if="tempProduct.imagesUrl[key] !== ''"
                     />
                   </div>
                 </div>
               </div>
             </div>
           </div>
-          <div class="modal-footer justify-content-between">
-            <div class="form-check">
-              <input
-                class="form-check-input"
-                type="checkbox"
-                :true-value="1"
-                :false-value="0"
-                id="is_enabled"
-                v-model="tempProduct.is_enabled"
-              />
-              <label class="form-check-label" for="is_enabled">
-                啟用商品
-              </label>
-            </div>
-            <div>
-              <button
-                type="button"
-                class="btn btn-secondary"
-                data-bs-dismiss="modal"
-                :disabled="btnDisabled"
-              >
-                取消
-              </button>
-              <button type="button" class="btn btn-primary ms-2" :disabled="btnDisabled" @click="updateProduct">確認編輯</button>
-            </div>
+        </div>
+        <div class="modal-footer justify-content-between">
+          <div class="form-check">
+            <input
+              class="form-check-input"
+              type="checkbox"
+              :true-value="1"
+              :false-value="0"
+              id="is_enabled"
+              v-model="tempProduct.is_enabled"
+            />
+            <label class="form-check-label" for="is_enabled">
+              啟用商品
+            </label>
+          </div>
+          <div>
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+              :disabled="btnDisabled"
+            >
+              取消
+            </button>
+            <button type="button" class="btn btn-primary ms-2" :disabled="btnDisabled" @click="updateProduct">確認編輯</button>
           </div>
         </div>
       </div>
@@ -211,6 +221,7 @@ export default {
     },
     uploadFile (inputElement) {
       this.isLoading = true
+
       return new Promise((resolve, reject) => {
         const uploadedFile = inputElement.files[0]
         // console.dir(uploadedFile)
@@ -233,19 +244,23 @@ export default {
         })
       })
     },
-    uploadMainImg (inputElement) {
-      this.uploadFile(inputElement).then(() => {
+    uploadMainImg (input) {
+      this.uploadFile(this.$refs[input]).then(() => {
         this.tempProduct.imageUrl = this.tempImg
         // console.log('主圖：', this.tempProduct.imageUrl)
         this.tempImg = ''
       })
     },
-    uploadOtherImg (inputElement) {
-      this.uploadFile(inputElement).then(() => {
-        this.tempProduct.imagesUrl.push(this.tempImg)
+    uploadOtherImg (input, key) {
+      this.uploadFile(input.target).then(() => {
+        this.tempProduct.imagesUrl[key] = this.tempImg
         // console.log('其他圖：', this.tempProduct.imagesUrl)
         this.tempImg = ''
       })
+    },
+    deleteMainImg () {
+      this.tempProduct.imageUrl = ''
+      this.$refs.imageUrl.value = ''
     },
     updateProduct () {
       this.btnDisabled = true
