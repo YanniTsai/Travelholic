@@ -37,10 +37,10 @@
                     required
                   >
                     <option value="category" selected disabled>商品類別</option>
-                    <option value="Japan">日本</option>
-                    <option value="Thailand">泰國</option>
-                    <option value="Philippines">菲律賓</option>
-                    <option value="Indonesia">印尼</option>
+                    <option value="亞洲">亞洲</option>
+                    <option value="歐洲">歐洲</option>
+                    <option value="美洲">美洲</option>
+                    <option value="大洋洲">大洋洲</option>
                   </select>
                 </div>
                 <div class="col-md-6 mb-2">
@@ -52,7 +52,7 @@
                     required
                   >
                     <option value="unit" selected disabled>購買單位</option>
-                    <option value="people">人</option>
+                    <option value="人">人</option>
                   </select>
                 </div>
               </div>
