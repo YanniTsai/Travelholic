@@ -187,6 +187,7 @@ export default {
     return {
       modal: {},
       tempProduct: {
+        imageUrl: '',
         imagesUrl: []
       },
       tempImg: '',
