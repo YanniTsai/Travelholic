@@ -1,5 +1,5 @@
 <template>
-  <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+  <div id="carouselExampleIndicators" class="carousel slide home-carousel" data-bs-ride="carousel">
     <div class="carousel-inner">
       <div class="carousel-item active" data-bs-interval="5000">
         <img src="@/assets/images/banner-japan.jpeg" class="d-block" alt="日本"/>
