@@ -1,6 +1,6 @@
 <template>
   <Loading :active="isLoading" style="z-index: 9999"></Loading>
-  <nav class="navbar navbar-expand-lg navbar-light">
+  <nav class="navbar navbar-expand-lg">
     <div class="container-fluid">
       <a class="navbar-brand" href="#">
         <img src="@/assets/logo.png" width="150" alt="travelholic" />
@@ -18,21 +18,22 @@
       </button>
       <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
         <ul class="navbar-nav">
-          <router-link to="/products" class="nav-link link-effect">探索行程</router-link>
+          <router-link to="/products" class="nav-link">探索行程</router-link>
           <li class="nav-link">精彩文章</li>
           <li class="nav-link">我的最愛</li>
           <div class="dropdown">
             <a
-              class="nav-link dropdown-toggle"
+              class="dropdown-toggle nav-link dropdown-title"
               href="#"
               id="navbarDropdown"
               role="button"
               data-bs-toggle="dropdown"
               aria-expanded="false"
               data-bs-offset="-100,0"
-              @click="getCart"
+              @click.prevent="getCart"
             >
               購物車
+              <div class="cart-num" v-if="cartlength">{{ cartlength }}</div>
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
               <div class="d-flex flex-column justify-content-center align-items-center m-4" v-if="cartlength === 0">

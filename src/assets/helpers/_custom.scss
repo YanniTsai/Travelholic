@@ -19,6 +19,34 @@ $light-brown: #675a55;
 }
 
 // navbar-cart dropdown menu
+.dropdown-title{
+  position: relative;
+
+  a{
+    color: $brown;
+    text-decoration: none;
+  }
+
+  .cart-num{
+    font-size: 12px;
+    text-align: center;
+    color: white;
+    background-color: $main-orange;
+    height: 20px;
+    width: 20px;
+    border-radius: 10px;
+    position: absolute;
+    top: -5px;
+    right: 10px;
+
+    @include media-breakpoint-down(sm){
+      left: 70px;
+      top: 10px;
+    }
+  }
+
+}
+
 .dropdown-menu{
   width: 360px;
   max-height: 500px;
@@ -51,11 +79,13 @@ $light-brown: #675a55;
   width: 300px;
   height: 400px;
   transition: 0.3s;
-
+  // position: relative;
+  
   .card-img{
     height: 200px;
     overflow: hidden;
     position: relative;
+    
 
     img{
       width: 100%;
@@ -73,7 +103,12 @@ $light-brown: #675a55;
         display: none;
       }
     }
+  }
 
+  .card-like{
+    &:hover{
+      color: red;
+    }
   }
 
   &:hover{
