@@ -58,7 +58,12 @@
                     </div>
                     <div class="card-body m-1 d-flex flex-column justify-content-between">
                         <div>
-                            <h5 class="card-title">{{ item.title }}</h5>
+                            <div class="d-flex justify-content-between">
+                              <h5 class="card-title">{{ item.title }}</h5>
+                              <a href="#" class="text-dark">
+                                <i class="bi bi-heart card-like"></i>
+                              </a>
+                            </div>
                             <p class="card-text">{{ item.description }}</p>
                         </div>
                         <div class="d-flex justify-content-between align-items-center">
