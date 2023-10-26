@@ -11,7 +11,23 @@
             <h2 class="mb-3">{{ product.title }}</h2>
             <div class="row mb-3">
               <div class="col-md-8">
-                <img :src="product.imagesUrl" class="w-100"/>
+                <div id="productImages" class="carousel slide product-carousel" data-bs-ride="carousel">
+                  <div class="carousel-inner">
+                    <div class="carousel-item" v-for="(item, key) in product.imagesUrl" :key="key" :class="{'active': key === 0}">
+                      <img :src="item" class="d-block w-100" alt="其他圖片">
+                    </div>
+                  </div>
+                  <div v-if="product.imagesUrl.length > 1">
+                    <button class="carousel-control-prev" type="button" data-bs-target="#productImages" data-bs-slide="prev">
+                      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                      <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#productImages" data-bs-slide="next">
+                      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                      <span class="visually-hidden">Next</span>
+                    </button>
+                  </div>
+                </div>
               </div>
               <div class="col-md-4 p-3 d-flex flex-column justify-content-around">
                 <div class="d-flex">
@@ -107,7 +123,9 @@ export default {
   data () {
     return {
       id: '',
-      product: {},
+      product: {
+        imagesUrl: []
+      },
       qty: 1,
       isLoading: false
     }
