@@ -39,7 +39,9 @@
                     <option value="category" selected disabled>商品類別</option>
                     <option value="亞洲">亞洲</option>
                     <option value="歐洲">歐洲</option>
-                    <option value="美洲">美洲</option>
+                    <option value="非洲">非洲</option>
+                    <option value="北美洲">北美洲</option>
+                    <option value="南美洲">南美洲</option>
                     <option value="大洋洲">大洋洲</option>
                   </select>
                 </div>
