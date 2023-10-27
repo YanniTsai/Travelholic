@@ -71,7 +71,7 @@
         </div>
     </div>
 </div>
-<AddToCartModal ref="addToCartModal" :product="filterData" @add-to-cart="addToCart"></AddToCartModal>
+<AddToCartModal ref="addToCartModal" :product="tempProduct" @add-to-cart="addToCart"></AddToCartModal>
 </template>
 
 <script>
