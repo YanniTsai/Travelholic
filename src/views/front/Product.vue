@@ -3,52 +3,19 @@
 <div class="container">
     <div class="row mt-3">
         <div class="col-md-3">
-            <div class="accordion" id="accordionPanelsStayOpenExample">
-                <div class="accordion-item">
-                    <h2 class="accordion-header">
-                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
-                        亞洲
-                        </button>
-                    </h2>
-                    <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show">
-                        <ul class="list-group list-group-flush">
-                            <li class="list-group-item">日本</li>
-                            <li class="list-group-item">泰國</li>
-                            <li class="list-group-item">印尼</li>
-                            <li class="list-group-item">菲律賓</li>
-                            <li class="list-group-item">韓國</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="accordion-item">
-                    <h2 class="accordion-header">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">
-                        Accordion Item #2
-                        </button>
-                    </h2>
-                    <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse">
-                        <div class="accordion-body">
-                            test
-                        </div>
-                    </div>
-                </div>
-                <div class="accordion-item">
-                    <h2 class="accordion-header">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false" aria-controls="panelsStayOpen-collapseThree">
-                            Accordion Item #3
-                        </button>
-                    </h2>
-                    <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse">
-                        <div class="accordion-body">
-                            test
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <ul class="list-group">
+              <a href="#" class="list-group-item" @click.prevent="filter = ''" :class="{'active': filter === '' }">全部行程</a>
+              <a href="#" class="list-group-item" @click.prevent="filter = '亞洲'" :class="{'active': filter === '亞洲' }">亞洲</a>
+              <a href="#" class="list-group-item" @click.prevent="filter = '歐洲'" :class="{'active': filter === '歐洲' }">歐洲</a>
+              <a href="#" class="list-group-item" @click.prevent="filter = '非洲'" :class="{'active': filter === '非洲' }">非洲</a>
+              <a href="#" class="list-group-item" @click.prevent="filter = '北美洲'" :class="{'active': filter === '北美洲' }">北美洲</a>
+              <a href="#" class="list-group-item" @click.prevent="filter = '南美洲'" :class="{'active': filter === '南美洲' }">南美洲</a>
+              <a href="#" class="list-group-item" @click.prevent="filter = '大洋洲'" :class="{'active': filter === '大洋洲' }">大洋洲</a>
+            </ul>
         </div>
         <div class="col-md-9">
-            <div class="row justify-content-center justify-content-sm-start">
-                <div class="card col-12 col-md-3 m-2 p-0" v-for="(item, key) in products" :key="key">
+            <div class="row justify-content-center justify-content-sm-start mb-3">
+                <div class="card col-12 col-md-3 m-2 p-0" v-for="(item, key) in filterData[currentPage]" :key="key">
                     <div class="card-img">
                         <img :src="item.imageUrl" :alt="item.title">
                         <div class="explore-more d-flex justify-content-evenly align-items-center">
@@ -73,41 +40,65 @@
                     </div>
                 </div>
             </div>
-            <Pagination :pagination="pagination" @update-page="getProducts"></Pagination>
+            <!-- pagination -->
+            <nav aria-label="Page-navigation">
+              <ul class="pagination justify-content-center product-pagination">
+                <li class="page-item" :class="{ 'disabled': currentPage === 0 }">
+                  <a class="page-link" href="#" aria-label="First" @click.prevent="currentPage = 0">
+                    <span aria-hidden="true">&laquo;</span>
+                  </a>
+                </li>
+                <li class="page-item" :class="{ 'disabled': currentPage === 0 }">
+                  <a class="page-link" href="#" aria-label="Previous" @click.prevent="currentPage--">
+                    <span aria-hidden="true">&lsaquo;</span>
+                  </a>
+                </li>
+                <li class="page-item" v-for="page in filterData.length" :key="page">
+                  <a class="page-link" href="#" :class="{ 'active': currentPage === page-1 }" @click.prevent="currentPage = page-1">{{ page }}</a>
+                </li>
+                <li class="page-item" :class="{ 'disabled': currentPage === filterData.length-1 }">
+                  <a class="page-link" href="#" aria-label="Next" @click.prevent="currentPage++">
+                    <span aria-hidden="true">&rsaquo;</span>
+                  </a>
+                </li>
+                <li class="page-item" :class="{ 'disabled': currentPage === filterData.length-1 }">
+                  <a class="page-link" href="#" aria-label="Last" @click.prevent="currentPage = filterData.length-1">
+                    <span aria-hidden="true">&raquo;</span>
+                  </a>
+                </li>
+              </ul>
+            </nav>
         </div>
     </div>
 </div>
-<AddToCartModal ref="addToCartModal" :product="tempProduct" @add-to-cart="addToCart"></AddToCartModal>
+<AddToCartModal ref="addToCartModal" :product="filterData" @add-to-cart="addToCart"></AddToCartModal>
 </template>
 
 <script>
 import AddToCartModal from '@/components/front/AddToCartModal.vue'
-import Pagination from '../../components/front/Front_Pagination.vue'
 
 export default {
   data () {
     return {
-      products: {},
-      pagination: {},
+      products: [],
       tempProduct: {},
+      filter: '',
+      currentPage: 0,
       isLoading: false
     }
   },
   components: {
-    AddToCartModal,
-    Pagination
+    AddToCartModal
   },
   methods: {
-    getProducts (page = 1) {
+    getProducts () {
       this.isLoading = true
-      const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/products/?page=${page}`
+      const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/products/all`
 
       this.$http.get(api).then((res) => {
         this.isLoading = false
 
-        console.log(res.data)
-        this.products = res.data.products
-        this.pagination = res.data.pagination
+        this.products = Object.values(res.data.products)
       })
     },
     toProductInfo (id) {
@@ -132,6 +123,34 @@ export default {
         console.log(res.data)
         this.$refs.addToCartModal.hideModal()
       })
+    }
+  },
+  computed: {
+    filterData () {
+      let tempData = []
+      const filteredProducts = []
+
+      // 根據所選類別進行資料過濾
+      /* eslint-disable */
+      tempData = this.products.filter((item) => {
+        if (this.filter === '') {
+          return this.products
+        } else if (this.filter === item.category) {
+          return item
+        }
+      })
+      /* eslint-enable */
+
+      // 設定每頁顯示12筆資料
+      tempData.forEach((item, index) => {
+        if (index % 12 === 0) {
+          filteredProducts.push([])
+        }
+        const page = parseInt(index / 12)
+        filteredProducts[page].push(item)
+      })
+
+      return filteredProducts
     }
   },
   created () {
