@@ -34,8 +34,8 @@
                             <p class="card-text">{{ item.description }}</p>
                         </div>
                         <div class="d-flex justify-content-between align-items-center">
-                            <span class="origin-price">$ {{ item.origin_price }}</span>
-                            <span class="orange-price-lg">$ {{ item.price }}</span>
+                            <span class="origin-price">$ {{ $filters.currency(item.origin_price) }}</span>
+                            <span class="orange-price-lg">$ {{ $filters.currency(item.price) }}</span>
                         </div>
                     </div>
                 </div>
