@@ -1,7 +1,11 @@
 <template>
+    <div class="banner mb-5">
+      <img src="@/assets/images/checkout-banner.jpeg" alt="訂購成功">
+      <div class="banner-title p-3"><h5 class="m-2">訂購成功</h5></div>
+    </div>
     <div class="container">
         <div class="text-center m-3">
-            <h3>訂購成功！</h3>
+            <h5>啟程只差最後一步...</h5>
         </div>
         <div class="row justify-content-center">
             <form class="col-md-6" @submit.prevent="payOrder">

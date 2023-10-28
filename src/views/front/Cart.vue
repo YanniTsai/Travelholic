@@ -1,7 +1,10 @@
 <template>
     <Loading :active="isLoading" style="z-index: 9999"></Loading>
+    <div class="banner mb-5">
+      <img src="@/assets/images/cart-banner.jpeg" alt="購物車">
+      <div class="banner-title p-3"><h5 class="m-2">購物車</h5></div>
+    </div>
     <div class="container">
-        <h3 class="m-3">購物車</h3>
         <div class="d-flex flex-column align-items-center" v-if="cartlength === 0">
             <div>購物車目前沒有商品！</div>
             <button class="btn yellow-btn">
@@ -10,6 +13,7 @@
         </div>
         <div class="row" v-else>
             <div class="col-md-7 cart-list">
+                <div class="m-3">已選行程</div>
                 <div class="mb-3">
                     <div class="cart-item p-3 m-3" v-for="item in cart.carts" :key="item.id">
                         <div class="row">

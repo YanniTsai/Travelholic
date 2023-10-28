@@ -1,5 +1,9 @@
 <template>
 <Loading :active="isLoading" style="z-index: 9999"></Loading>
+<div class="banner mb-5">
+  <img src="@/assets/images/product-banner.jpeg" alt="探索行程">
+  <div class="banner-title p-3"><h5 class="m-2">探索行程</h5></div>
+</div>
 <div class="container">
     <div class="row mt-3">
         <div class="col-md-3">

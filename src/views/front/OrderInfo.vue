@@ -1,9 +1,10 @@
 <template>
   <Loading :active="isLoading" style="z-index: 9999"></Loading>
-  <div class="container">
-    <div>
-      <h3 class="m-3">訂購人資訊</h3>
+  <div class="banner mb-5">
+      <img src="@/assets/images/orderInfo-banner.jpeg" alt="訂購人資訊">
+      <div class="banner-title p-3"><h5 class="m-2">訂購人資訊</h5></div>
     </div>
+  <div class="container">
     <div class="row">
       <div class="col-md-8">
         <VForm class="col-md-10" v-slot="{ errors }" @submit="createOrder">

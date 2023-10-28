@@ -97,6 +97,25 @@ $light-brown: #675a55;
 }
 
 // 【Product page】
+// banner
+.banner{
+  max-height: 300px;
+  overflow: hidden;
+  position: relative;
+
+  img{
+    width: 100%;
+  }
+
+  .banner-title{
+    color: #ffffff;
+    border: 1px solid #ffffff;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
 // product category
 .list-group{
   a{
@@ -231,6 +250,27 @@ $light-brown: #675a55;
   font-size: 24px;
   display: inline-block;
   border-bottom: 5px solid $light-yellow;
+}
+
+// 【finishOrder】
+.finish-page{
+  background-image: url('@/assets/images/finishOrder.jpeg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  height: 100vh;
+
+  .finish-content{
+    line-height: 30px;
+    text-align: center;
+    color: #ffffff;
+    background-color: rgba(0, 0, 0, 0.2);
+    // border: 1px solid #ffffff;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
 }
 
 // footer
