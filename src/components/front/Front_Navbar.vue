@@ -20,7 +20,7 @@
         <ul class="navbar-nav">
           <router-link to="/products" class="nav-link">探索行程</router-link>
           <li class="nav-link">精彩文章</li>
-          <li class="nav-link">我的最愛</li>
+          <a class="nav-link" href="#" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">我的最愛</a>
           <div class="dropdown">
             <a
               class="dropdown-toggle nav-link dropdown-title"
@@ -66,17 +66,41 @@
       </div>
     </div>
   </nav>
+  <!-- 我的最愛 -->
+  <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+    <div class="offcanvas-header">
+      <h5 class="offcanvas-title" id="offcanvasRightLabel">我的最愛</h5>
+      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+      <div class="fav-item border-bottom p-3" v-for="product in favList" :key="product.id">
+        <router-link :to="`/products/${product.id}`" class="text-muted text-decoration-none">
+          <div class="row">
+            <img :src="product.imageUrl" alt="商品圖片" class="col-6">
+            <table class="col-6 d-flex flex-column justify-content-start">
+              <tr class="fw-bold">{{ product.title }}</tr>
+              <tr class="fav-description">{{ product.description }}</tr>
+            </table>
+          </div>
+        </router-link>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
 export default {
   data () {
     return {
+      products: [],
+      favorited: JSON.parse(localStorage.getItem('favoriteItem')) || [],
+      favList: [],
       cart: {},
       cartlength: 0,
       isLoading: false
     }
   },
+  inject: ['emitter'],
   watch: {
     cart () {
       this.cartlength = this.cart.carts.length
@@ -100,6 +124,10 @@ export default {
   },
   mounted () {
     this.getCart()
+    this.emitter.on('get-favlist', (favlist) => {
+      this.favList = favlist
+      console.log('navbar裡的favlist:', this.favList)
+    })
   }
 }
 </script>

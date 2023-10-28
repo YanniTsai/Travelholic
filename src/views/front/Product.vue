@@ -27,8 +27,9 @@
                         <div>
                             <div class="d-flex justify-content-between">
                               <h5 class="card-title">{{ item.title }}</h5>
-                              <a href="#" class="text-dark">
-                                <i class="bi bi-heart card-like"></i>
+                              <a href="#" class="text-dark" @click.prevent="addToFav(item.id)">
+                                <i class="bi bi-heart-fill card-like text-danger" v-if="favorited.indexOf(item.id) > -1"></i>
+                                <i class="bi bi-heart card-like" v-else></i>
                               </a>
                             </div>
                             <p class="card-text">{{ item.description }}</p>
@@ -84,11 +85,18 @@ export default {
       tempProduct: {},
       filter: '',
       currentPage: 0,
+      favorited: JSON.parse(localStorage.getItem('favoriteItem')) || [],
       isLoading: false
     }
   },
   components: {
     AddToCartModal
+  },
+  inject: ['emitter'],
+  watch: {
+    favList () {
+      this.emitter.emit('get-favlist', this.favList)
+    }
   },
   methods: {
     getProducts () {
@@ -97,8 +105,9 @@ export default {
 
       this.$http.get(api).then((res) => {
         this.isLoading = false
-
-        this.products = Object.values(res.data.products)
+        // api文件提供的 res.data.products 格式為物件，但 console 顯示陣列。
+        // this.products = Object.values(res.data.products)
+        this.products = res.data.products
       })
     },
     toProductInfo (id) {
@@ -123,6 +132,17 @@ export default {
         console.log(res.data)
         this.$refs.addToCartModal.hideModal()
       })
+    },
+    addToFav (id) {
+      const index = this.favorited.indexOf(id)
+
+      if (this.favorited.indexOf(id) < 0) {
+        this.favorited.push(id)
+      } else {
+        this.favorited.splice(index, 1)
+      }
+
+      localStorage.setItem('favoriteItem', JSON.stringify(this.favorited))
     }
   },
   computed: {
@@ -151,6 +171,11 @@ export default {
       })
 
       return filteredProducts
+    },
+    favList () {
+      return this.products.filter((item) => {
+        return this.favorited.indexOf(item.id) > -1
+      })
     }
   },
   created () {

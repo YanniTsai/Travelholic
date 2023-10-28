@@ -5,6 +5,7 @@ $light-orange:#ff9d58;
 $brown: #513a31;
 $light-brown: #675a55;
 
+// 【 Navbar 】
 .navbar {
   background: $main-yellow;
   
@@ -14,6 +15,27 @@ $light-brown: #675a55;
 
     &:hover{
       transform: translateY(-5px);
+    }
+  }
+}
+
+// Favrite-item canvas
+.offcanvas{
+  .fav-item{
+    height: 130px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    img{
+      height: 100px;
+    }
+
+    .fav-description{
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 3;
     }
   }
 }
@@ -122,7 +144,7 @@ $light-brown: #675a55;
 
   .card-like{
     &:hover{
-      color: red;
+      color: $red;
     }
   }
 
