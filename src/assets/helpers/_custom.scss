@@ -81,19 +81,68 @@ $light-brown: #675a55;
   }
 }
 
-// home page
 .home-carousel{
-  height: 100vh;
+  height: 100;
+  position: relative;
 
-  img{
-  height: 100vh;
-  // overflow: hidden;
+  .home-title{
+    z-index: 9999;
+    font-size: 20px;
+    color: #ffffff;
+    background-color: rgba(0, 0, 0, 0.3);
+    border: 1px solid #ffffff;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
 
-    @include media-breakpoint-up(md) {
-      width: 100vw;
+    @include media-breakpoint-down(sm){
+      font-size: 16px;
     }
   }
-
+    
+  .carousel-1{
+    background-image: url('@/assets/images/carousel-1.jpeg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    height: 100vh;
+  }
+  .carousel-2{
+    background-image: url('@/assets/images/carousel-2.jpeg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    height: 100vh;
+  }
+  .carousel-3{
+    background-image: url('@/assets/images/carousel-3.jpeg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    height: 100vh;
+  }
+  .carousel-4{
+    background-image: url('@/assets/images/carousel-4.jpeg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    height: 100vh;
+  }
+  .carousel-5{
+    background-image: url('@/assets/images/carousel-5.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    height: 100vh;
+  }
+  .carousel-6{
+    background-image: url('@/assets/images/carousel-6.jpeg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    height: 100vh;
+  }
 }
 
 // 【Product page】
@@ -241,8 +290,6 @@ $light-brown: #675a55;
       height: 250px;
     }
   }
-
-  
 }
 
 .info-title{

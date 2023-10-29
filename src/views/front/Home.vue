@@ -1,27 +1,28 @@
 <template>
-  <div id="carouselExampleIndicators" class="carousel slide home-carousel" data-bs-ride="carousel">
-    <div class="carousel-inner">
-      <div class="carousel-item active" data-bs-interval="5000">
-        <img src="@/assets/images/banner-japan.jpeg" class="d-block" alt="日本"/>
-      </div>
-      <div class="carousel-item" data-bs-interval="5000">
-        <img src="@/assets/images/banner-thailand.jpeg" class="d-block" alt="泰國"/>
-      </div>
-      <div class="carousel-item" data-bs-interval="5000">
-        <img src="@/assets/images/banner-bali.jpeg" class="d-block" alt="峇里島"/>
-      </div>
+  <div id="homeCarousel" class="carousel slide home-carousel" data-bs-ride="carousel">
+    <div class="home-title text-center fst-italic text-nowrap p-5 ">
+      <div>Time to step outside.</div>
+      <div>下一趟旅行，啟程！</div>
     </div>
-    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+    <div class="carousel-inner">
+      <div class="carousel-item carousel-1 active" data-bs-interval="4000"></div>
+      <div class="carousel-item carousel-2" data-bs-interval="4000"></div>
+      <div class="carousel-item carousel-3" data-bs-interval="4000"></div>
+      <div class="carousel-item carousel-4" data-bs-interval="4000"></div>
+      <div class="carousel-item carousel-5" data-bs-interval="4000"></div>
+      <div class="carousel-item carousel-6" data-bs-interval="4000"></div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#homeCarousel" data-bs-slide="prev">
       <span class="carousel-control-prev-icon" aria-hidden="true"></span>
       <span class="visually-hidden">Previous</span>
     </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+    <button class="carousel-control-next" type="button" data-bs-target="#homeCarousel" data-bs-slide="next">
       <span class="carousel-control-next-icon" aria-hidden="true"></span>
       <span class="visually-hidden">Next</span>
     </button>
   </div>
   <div class="row mt-2">
-    <img src="@/assets/images/tokyo.jpeg" alt="" class="col-md-6 info-left">
+    <!-- <img src="@/assets/images/tokyo.jpeg" alt="" class="col-md-6 info-left"> -->
     <div class="col-md-6 p-5">
         <h4>東京</h4>
         <p>東京，現代與傳統交織的城市。高樓大廈、美食、購物與淺草寺、皇居花園等文化景點共存。六本木的現代藝術、秋葉原的電子天堂吸引著遊客。最令人難忘的是在東京遠足欣賞壯觀的富士山，日本的象徵。東京多元、難忘，結合古老和現代，是絕佳旅遊勝地。</p>
