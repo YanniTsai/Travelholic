@@ -6,9 +6,14 @@ $brown: #513a31;
 $light-brown: #675a55;
 
 // 【 Navbar 】
-.navbar {
-  background: $main-yellow;
-  
+.front-navbar {
+  z-index: 1040;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  background: transparent;
+  transition: all 0.5s;
+
   .nav-link {
     color: $brown;
     transition: 0.3s;
@@ -17,6 +22,9 @@ $light-brown: #675a55;
       transform: translateY(-5px);
     }
   }
+}
+.navbar-yellow{
+  background: $main-yellow;
 }
 
 // Favrite-item canvas

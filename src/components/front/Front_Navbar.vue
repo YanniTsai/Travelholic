@@ -1,6 +1,6 @@
 <template>
   <Loading :active="isLoading" style="z-index: 9999"></Loading>
-  <nav class="navbar navbar-expand-lg">
+  <nav class="navbar navbar-expand-lg front-navbar" :class="{ 'navbar-yellow': isScrolled }">
     <div class="container-fluid">
       <a class="navbar-brand" href="#">
         <img src="@/assets/logo.png" width="150" alt="travelholic" />
@@ -97,7 +97,8 @@ export default {
       favList: [],
       cart: {},
       cartlength: 0,
-      isLoading: false
+      isLoading: false,
+      isScrolled: false
     }
   },
   inject: ['emitter'],
@@ -120,6 +121,15 @@ export default {
     },
     goToCart () {
       this.$router.push('/cart')
+    },
+    detectScrolled () {
+      window.addEventListener('scroll', () => {
+        if (window.scrollY >= 58.2) {
+          this.isScrolled = true
+        } else {
+          this.isScrolled = false
+        }
+      })
     }
   },
   mounted () {
@@ -128,6 +138,7 @@ export default {
       this.favList = favlist
       console.log('navbar裡的favlist:', this.favList)
     })
+    this.detectScrolled()
   }
 }
 </script>
