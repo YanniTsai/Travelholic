@@ -98,6 +98,7 @@ $light-brown: #675a55;
 .home-carousel{
   height: 100;
   position: relative;
+  z-index: 1;
 
   .home-title{
     z-index: 1030;
@@ -157,6 +158,45 @@ $light-brown: #675a55;
     background-size: cover;
     height: 100vh;
   }
+}
+
+.home-intro{
+  position: relative;
+
+  .intro-background{
+    background-image: url('@/assets/images/tokyo.jpeg');
+    background-repeat: no-repeat;
+    background-position: left;
+    background-size: cover;
+    position: fixed;
+    height: 100vh;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: -1;
+  }
+  .intro-content{
+    position: relative;
+
+    .tokyo{
+      height: calc(100vh - 58.2px);
+      padding: 50px;
+
+      .tokyo-content{
+        padding: 50px;
+        background-color: rgba($white, 0.4)
+      }
+    }
+  }
+}
+
+.subscribe{
+  color: #ffffff;
+  background-image: url('@/assets/images/subscribe.jpg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  height: 200px;
 }
 
 // 【Product page】
