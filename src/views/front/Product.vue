@@ -97,11 +97,6 @@ export default {
     AddToCartModal
   },
   inject: ['emitter'],
-  watch: {
-    favList () {
-      this.emitter.emit('get-favlist', this.favList)
-    }
-  },
   methods: {
     getProducts () {
       this.isLoading = true
@@ -147,6 +142,7 @@ export default {
       }
 
       localStorage.setItem('favoriteItem', JSON.stringify(this.favorited))
+      this.emitter.emit('get-favlist')
     }
   },
   computed: {
@@ -175,11 +171,6 @@ export default {
       })
 
       return filteredProducts
-    },
-    favList () {
-      return this.products.filter((item) => {
-        return this.favorited.indexOf(item.id) > -1
-      })
     }
   },
   created () {

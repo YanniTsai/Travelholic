@@ -93,7 +93,6 @@ export default {
   data () {
     return {
       products: [],
-      favorited: JSON.parse(localStorage.getItem('favoriteItem')) || [],
       favList: [],
       cart: {},
       cartlength: 0,
@@ -108,6 +107,31 @@ export default {
     }
   },
   methods: {
+    getProducts () {
+      return new Promise((resolve, reject) => {
+        this.isLoading = true
+        const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/products/all`
+
+        this.$http.get(api).then((res) => {
+          this.isLoading = false
+
+          if (res.data.success) {
+            this.products = res.data.products
+            resolve()
+          } else {
+            const error = new Error('取得產品失敗')
+            reject(error)
+          }
+        })
+      })
+    },
+    getFav () {
+      const favorited = JSON.parse(localStorage.getItem('favoriteItem')) || []
+
+      this.favList = this.products.filter((item) => {
+        return favorited.indexOf(item.id) > -1
+      })
+    },
     getCart () {
       this.isLoading = true
       const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/cart`
@@ -134,11 +158,13 @@ export default {
   },
   mounted () {
     this.getCart()
-    this.emitter.on('get-favlist', (favlist) => {
-      this.favList = favlist
-      console.log('navbar裡的favlist:', this.favList)
+    this.getProducts().then(() => {
+      this.getFav()
     })
     this.detectScrolled()
+    this.emitter.on('get-favlist', () => {
+      this.getFav()
+    })
   }
 }
 </script>
