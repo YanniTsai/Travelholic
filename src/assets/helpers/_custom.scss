@@ -175,18 +175,31 @@ $light-brown: #675a55;
     left: 0;
     z-index: -1;
   }
-  .intro-content{
-    position: relative;
 
-    .tokyo{
-      height: calc(100vh - 58.2px);
+  .word-section{
+    height: calc(100vh - 58.2px);
+    padding: 50px;
+
+    .word-box{
       padding: 50px;
-
-      .tokyo-content{
-        padding: 50px;
-        background-color: rgba($white, 0.4)
-      }
+      color: #ffffff;
+      background-color: rgba(0, 0, 0, 0.4);
     }
+  }
+
+  .rome-img{
+    background-image: url('@/assets/images/rome.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    height: calc(100vh - 58.2px);
+  }
+  .capetown-img{
+    background-image: url('@/assets/images/capetown.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    height: calc(100vh - 58.2px);
   }
 }
 
