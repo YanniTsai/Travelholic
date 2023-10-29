@@ -22,7 +22,13 @@ $light-brown: #675a55;
       transform: translateY(-5px);
     }
   }
+
+  @include media-breakpoint-down(sm){
+    position: sticky;
+    background: $main-yellow;
+  }
 }
+
 .navbar-yellow{
   background: $main-yellow;
 }
