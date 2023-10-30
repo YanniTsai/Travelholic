@@ -73,7 +73,11 @@
       <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
     <div class="offcanvas-body">
-      <div class="fav-item border-bottom p-3" v-for="product in favList" :key="product.id">
+      <div class="d-flex flex-column justify-content-center align-items-center" v-if="favList.length === 0">
+        <div class="mb-3">目前沒有儲存行程！</div>
+        <button class="btn yellow-btn"><router-link to="/products" class="text-decoration-none text-dark">探索行程</router-link></button>
+      </div>
+      <div v-else class="fav-item border-bottom p-3" v-for="product in favList" :key="product.id">
         <router-link :to="`/products/${product.id}`" class="text-muted text-decoration-none">
           <div class="row">
             <img :src="product.imageUrl" alt="商品圖片" class="col-6">
