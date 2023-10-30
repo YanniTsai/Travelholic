@@ -47,7 +47,7 @@
             </div>
             <!-- pagination -->
             <nav aria-label="Page-navigation">
-              <ul class="pagination justify-content-center product-pagination">
+              <ul class="pagination justify-content-center front-pagination">
                 <li class="page-item" :class="{ 'disabled': currentPage === 0 }">
                   <a class="page-link" href="#" aria-label="First" @click.prevent="currentPage = 0">
                     <span aria-hidden="true">&laquo;</span>
