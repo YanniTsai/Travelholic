@@ -37,6 +37,10 @@ const routes = [
       {
         path: 'finishorder',
         component: () => import('../views/front/FinishOrder.vue')
+      },
+      {
+        path: 'orderhistory',
+        component: () => import('../views/front/OrderHistory.vue')
       }
     ]
   },

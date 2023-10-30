@@ -19,7 +19,7 @@
       <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
         <ul class="navbar-nav">
           <router-link to="/products" class="nav-link">探索行程</router-link>
-          <li class="nav-link">精彩文章</li>
+          <router-link to="/orderhistory" class="nav-link">歷史訂單</router-link>
           <a class="nav-link" href="#" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">我的最愛</a>
           <div class="dropdown">
             <a

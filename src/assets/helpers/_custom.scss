@@ -297,7 +297,7 @@ $light-brown: #675a55;
 }
 
 // pagination in product page
-.product-pagination{
+.front-pagination{
   a{
     color: $main-orange;
 
@@ -314,6 +314,12 @@ $light-brown: #675a55;
     background-color: $main-orange;
     border: 1px solid $main-orange;
   }
+}
+
+// 【order-history page】
+.order-info{
+  border: 1px solid #dbd5d5f5;
+  border-radius: 10px;
 }
 
 // 【cart page】
