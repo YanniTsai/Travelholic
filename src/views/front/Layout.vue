@@ -1,7 +1,9 @@
 <template>
-  <Navbar></Navbar>
-  <router-view></router-view>
-  <Footer></Footer>
+  <div class="d-flex flex-column" style="min-height: 100vh;">
+    <Navbar></Navbar>
+    <router-view></router-view>
+    <Footer class="mt-auto"></Footer>
+  </div>
 </template>
 
 <script>
