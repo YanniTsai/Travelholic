@@ -80,14 +80,14 @@
         <div class="mb-3 info-title"><i class="bi bi-bag-check"></i> 訂購內容</div>
         <table class="table my-3">
           <tr>
-            <th>商品名稱</th>
-            <th class="text-center">數量</th>
-            <th>金額</th>
+            <th class="col-7">商品名稱</th>
+            <th class="col-2 text-center">數量</th>
+            <th class="col-3 text-end">金額</th>
           </tr>
           <tr v-for="item in cart.carts" :key="item.id" class="lh-lg">
-            <td class="col-7">{{ item.product.title }}</td>
-            <td class="col-2 text-center">{{ item.qty }}</td>
-            <td class="col-3">$ {{ $filters.currency(item.product.price) }}</td>
+            <td>{{ item.product.title }}</td>
+            <td class="text-center">{{ item.qty }}</td>
+            <td class="text-end">$ {{ $filters.currency(item.product.price) }}</td>
           </tr>
         </table>
         <div class="mb-3" v-if="coupon_code">
