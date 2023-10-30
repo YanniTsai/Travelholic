@@ -63,7 +63,7 @@
                         </tbody>
                     </table>
                     <div class="text-end mb-3">
-                        <button class="btn">付款去</button>
+                        <button class="btn orange-btn">付款去</button>
                     </div>
                 </div>
             </form>
