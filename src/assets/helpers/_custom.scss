@@ -316,9 +316,18 @@ $light-brown: #675a55;
   }
 }
 
-// cart page
+// 【cart page】
+.cart-num-lg{
+  text-align: center;
+  color: white;
+  background-color: $main-orange;
+  height: 26px;
+  width: 26px;
+  border-radius: 13px;
+}
+
 .cart-list{
-  height: 100vh;
+  max-height: 100vh;
   overflow: auto;
 }
 
@@ -361,7 +370,7 @@ $light-brown: #675a55;
 
 .info-title{
   color: $brown;
-  font-size: 24px;
+  font-size: 22px;
   display: inline-block;
   border-bottom: 5px solid $light-yellow;
 }

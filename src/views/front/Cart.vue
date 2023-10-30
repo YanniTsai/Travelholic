@@ -6,14 +6,17 @@
     </div>
     <div class="container">
         <div class="d-flex flex-column align-items-center" v-if="cartlength === 0">
-            <div>購物車目前沒有商品！</div>
+            <div class="mb-3">購物車目前沒有商品！</div>
             <button class="btn yellow-btn">
                 <router-link to="/products" class="text-dark text-decoration-none">探索行程</router-link>
             </button>
         </div>
         <div class="row" v-else>
             <div class="col-md-7 cart-list">
-                <div class="m-3">已選行程</div>
+                <div class="d-flex align-items-center">
+                  <div class="m-3 info-title"><i class="bi bi-suitcase-lg"></i> 已選行程</div>
+                  <div class="cart-num-lg d-flex justify-content-center align-items-center"><span>{{ cartlength }}</span></div>
+                </div>
                 <div class="mb-3">
                     <div class="cart-item p-3 m-3" v-for="item in cart.carts" :key="item.id">
                         <div class="row">
@@ -22,7 +25,7 @@
                                 <router-link :to="`/products/${item.product.id}`" class="text-muted text-decoration-none">
                                     <div class="mb-2">{{ item.product.title }}</div>
                                     <div class="fw-light mb-2">{{ item.product.description }}</div>
-                                    <div>$ {{ item.product.price }}</div>
+                                    <div>$ {{ $filters.currency(item.product.price) }}</div>
                                 </router-link>
                             </div>
                             <div class="col-md-3 d-flex align-items-center">
@@ -43,9 +46,9 @@
                 </div>
             </div>
             <div class="col-md-5">
-                <div class="mt-3 ms-3 mb-3 pt-3">
-                    <div class="mb-3">套用優惠</div>
-                    <div class="input-group mb-1">
+                <div class="m-3">
+                    <div class="mb-3 info-title"><i class="bi bi-ticket-perforated"></i> 套用優惠</div>
+                    <div class="input-group mt-3 mb-1">
                         <input type="text" class="form-control" placeholder="輸入優惠碼" aria-label="coupon_code" aria-describedby="usecoupon" v-model="coupon_code">
                         <button class="btn yellow-btn border" type="button" id="usecoupon" @click.prevent="addCoupon">使用</button>
                     </div>
