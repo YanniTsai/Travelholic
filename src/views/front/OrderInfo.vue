@@ -2,12 +2,13 @@
   <Loading :active="isLoading" style="z-index: 9999"></Loading>
   <div class="banner mb-5">
       <img src="@/assets/images/orderInfo-banner.jpeg" alt="訂購人資訊">
-      <div class="banner-title p-3"><h5 class="m-2">訂購人資訊</h5></div>
+      <div class="banner-title p-3"><h5 class="m-2">確認訂單</h5></div>
     </div>
   <div class="container">
     <div class="row">
       <div class="col-md-8">
-        <VForm class="col-md-10" v-slot="{ errors }" @submit="createOrder">
+        <div class="mb-3 info-title"><i class="bi bi-person"></i> 訂購人資訊</div>
+        <VForm class="col-md-10 my-3" v-slot="{ errors }" @submit="createOrder">
           <div class="mb-3">
             <label for="name" class="form-label"><span class="text-danger">*</span>訂購人姓名</label>
             <Field
@@ -65,19 +66,19 @@
             <textarea
             id="message"
             class="form-control"
-            cols="30"
+            cols="20"
             rows="10"
             v-model="form.message"
             ></textarea>
           </div>
-          <div class="text-end mb-3">
+          <div class="text-end">
             <button class="btn orange-btn">送出訂單</button>
           </div>
         </VForm>
       </div>
       <div class="col-md-4">
-        <div class="mb-3 fs-5">訂購內容</div>
-        <table class="table mb-3">
+        <div class="mb-3 info-title"><i class="bi bi-bag-check"></i> 訂購內容</div>
+        <table class="table my-3">
           <tr>
             <th>商品名稱</th>
             <th class="text-center">數量</th>
