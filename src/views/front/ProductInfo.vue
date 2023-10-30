@@ -8,7 +8,13 @@
     </div>
     <div class="container">
         <div>
-            <h2 class="mb-3">{{ product.title }}</h2>
+            <div class="mt-3" aria-label="breadcrumb">
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item"><router-link to="/products" class="text-decoration-none text-dark">探索行程</router-link></li>
+                <li class="breadcrumb-item active" aria-current="page">行程介紹</li>
+              </ol>
+            </div>
+            <h2 class="my-4">{{ product.title }}</h2>
             <div class="row mb-3">
               <div class="col-md-8">
                 <div id="productImages" class="carousel slide product-carousel" data-bs-ride="carousel">
