@@ -35,8 +35,8 @@
                     <div class="mx-2">{{ product.description }}</div>
                 </div>
                 <div>
-                    <div class="origin-price">原價：$ {{ product.origin_price }}</div>
-                    <div class="orange-price-lg">優惠價：$ {{ product.price }}</div>
+                    <div class="origin-price">原價：$ {{ $filters.currency(product.origin_price) }}</div>
+                    <div class="orange-price-lg">優惠價：$ {{ $filters.currency(product.price) }}</div>
                 </div>
                 <div>
                     <div class="mb-3">

@@ -17,8 +17,8 @@
         </div>
         <div class="modal-footer d-flex flex-column align-items-stretch">
           <div>
-            <div class="origin-price">原價：$ {{ product.origin_price }}</div>
-            <div class="orange-price-lg">優惠價：$ {{ product.price }}</div>
+            <div class="origin-price">原價：$ {{ $filters.currency(product.origin_price) }}</div>
+            <div class="orange-price-lg">優惠價：$ {{ $filters.currency(product.price) }}</div>
           </div>
           <div>
             <label for="num">選擇人數</label>

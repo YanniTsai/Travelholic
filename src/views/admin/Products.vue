@@ -22,8 +22,8 @@
         </td>
         <td>{{ item.title }}</td>
         <td>{{ item.category }}</td>
-        <td class="text-end">{{ item.origin_price }}</td>
-        <td class="text-end">{{ item.price }}</td>
+        <td class="text-end">{{ $filters.currency(item.origin_price) }}</td>
+        <td class="text-end">{{ $filters.currency(item.price) }}</td>
         <td class="text-center">
           <span class="text-success" v-if="item.is_enabled">啟用</span>
           <span class="text-secondary" v-else>未啟用</span>
