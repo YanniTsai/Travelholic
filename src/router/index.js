@@ -16,7 +16,7 @@ const routes = [
       },
       {
         path: 'products',
-        component: () => import('../views/front/Product.vue')
+        component: () => import('../views/front/Products.vue')
       },
       {
         path: 'products/:productId',
@@ -50,19 +50,19 @@ const routes = [
     children: [
       {
         path: 'products',
-        component: () => import('../views/admin/Products')
+        component: () => import('../views/admin/Admin_Products')
       },
       {
         path: 'orders',
-        component: () => import('../views/admin/Orders')
+        component: () => import('../views/admin/Admin_Orders')
       },
       {
         path: 'coupons',
-        component: () => import('../views/admin/Coupons')
+        component: () => import('../views/admin/Admin_Coupons')
       },
       {
         path: 'articles',
-        component: () => import('../views/admin/Articles')
+        component: () => import('../views/admin/Admin_Articles')
       }
     ]
   }
