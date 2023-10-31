@@ -55,9 +55,10 @@
                         </select>
                     </div>
                     <div class="d-flex justify-content-between">
-                        <button class="btn">
-                            <i class="bi bi-heart"></i>
-                        </button>
+                        <a href="#" class="text-dark" @click.prevent="addToFav(product)">
+                            <i class="bi bi-heart-fill card-like text-danger" v-if="favorited.indexOf(product.id) > -1"></i>
+                            <i class="bi bi-heart card-like" v-else></i>
+                        </a>
                         <div class="d-flex justify-content-between">
                             <button class="btn yellow-btn m-1" @click.prevent="addToCart">加入購物車</button>
                             <button class="btn orange-btn m-1" @click.prevent="buyDirectly">直接購買</button>
@@ -133,6 +134,7 @@ export default {
         imagesUrl: []
       },
       qty: 1,
+      favorited: JSON.parse(localStorage.getItem('favoriteItem')) || [],
       isLoading: false
     }
   },
@@ -149,6 +151,20 @@ export default {
 
         this.product = res.data.product
       })
+    },
+    addToFav (item) {
+      const index = this.favorited.indexOf(item.id)
+
+      if (this.favorited.indexOf(item.id) < 0) {
+        this.favorited.push(item.id)
+        this.emitter.emit('notification', { title: item.title, content: '已加入我的最愛' })
+      } else {
+        this.favorited.splice(index, 1)
+        this.emitter.emit('notification', { title: item.title, content: '已從我的最愛移除' })
+      }
+
+      localStorage.setItem('favoriteItem', JSON.stringify(this.favorited))
+      this.emitter.emit('get-favlist')
     },
     addToCart () {
       this.isLoading = true
