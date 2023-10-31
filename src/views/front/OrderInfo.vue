@@ -93,7 +93,7 @@
         <div class="mb-3" v-if="coupon_code">
           <div class="text-success">已使用優惠碼： {{ coupon_code }} （整單{{ coupon_percent / 10 }}折）</div>
         </div>
-        <div class="text-end">
+        <div class="text-end mb-3">
           <div :class="{'origin-price': coupon_code}">訂單總金額： $ {{ $filters.currency(cart.total) }}</div>
           <div class="orange-price" v-if="coupon_code">訂單總金額： $ {{ $filters.currency(cart.final_total) }}</div>
         </div>
