@@ -136,6 +136,7 @@ export default {
       isLoading: false
     }
   },
+  inject: ['emitter'],
   methods: {
     getProduct () {
       this.isLoading = true
@@ -164,6 +165,7 @@ export default {
 
           if (res.data) {
             console.log(res.data)
+            this.emitter.emit('get-cart')
             resolve()
           } else {
             const error = new Error('加入購物車失敗')

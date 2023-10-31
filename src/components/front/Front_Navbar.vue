@@ -30,7 +30,6 @@
               data-bs-toggle="dropdown"
               aria-expanded="false"
               data-bs-offset="-100,0"
-              @click.prevent="getCart"
             >
               購物車
               <div class="cart-num" v-if="cartlength">{{ cartlength }}</div>
@@ -105,11 +104,6 @@ export default {
     }
   },
   inject: ['emitter'],
-  watch: {
-    cart () {
-      this.cartlength = this.cart.carts.length
-    }
-  },
   methods: {
     getProducts () {
       return new Promise((resolve, reject) => {
@@ -145,6 +139,7 @@ export default {
         console.log(res.data)
 
         this.cart = res.data.data
+        this.cartlength = this.cart.carts.length
       })
     },
     goToCart () {
@@ -168,6 +163,9 @@ export default {
     this.detectScrolled()
     this.emitter.on('get-favlist', () => {
       this.getFav()
+    })
+    this.emitter.on('get-cart', () => {
+      this.getCart()
     })
   }
 }

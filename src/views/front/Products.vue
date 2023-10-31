@@ -129,6 +129,7 @@ export default {
         this.isLoading = false
 
         console.log(res.data)
+        this.emitter.emit('get-cart')
         this.$refs.addToCartModal.hideModal()
       })
     },
