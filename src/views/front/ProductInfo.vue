@@ -54,7 +54,7 @@
                             <option value="4">4</option>
                         </select>
                     </div>
-                    <div class="d-flex justify-content-between">
+                    <div class="d-flex justify-content-between align-items-center">
                         <a href="#" class="text-dark" @click.prevent="addToFav(product)">
                             <i class="bi bi-heart-fill card-like text-danger" v-if="favorited.indexOf(product.id) > -1"></i>
                             <i class="bi bi-heart card-like" v-else></i>
