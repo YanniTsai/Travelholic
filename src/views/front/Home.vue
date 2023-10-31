@@ -58,7 +58,7 @@
   <div class="subscribe text-nowrap d-flex align-items-center">
     <div class="col-md-6 p-4">
       <h4 class="mb-3">訂閱電子報，立即取得整單9折優惠！</h4>
-      <form action="submit" class="form">
+      <form class="form" @submit="subscribe" ref="subscribe">
         <div class="input-group">
           <input type="email" id="Email" class="form-control" placeholder="請輸入Email" required>
           <button type="submit" class="btn btn-secondary">訂閱電子報</button>
@@ -75,6 +75,7 @@ export default {
       isScrolled: false
     }
   },
+  inject: ['emitter'],
   methods: {
     scrollToTokyo () {
       window.addEventListener('scroll', () => {
@@ -84,6 +85,10 @@ export default {
           this.isScrolled = false
         }
       })
+    },
+    subscribe () {
+      this.$refs.subscribe.reset()
+      this.emitter.emit('notification', { title: '', content: '電子報訂閱成功！9折優惠碼：welcome' })
     }
   },
   created () {

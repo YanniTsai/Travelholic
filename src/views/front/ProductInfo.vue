@@ -165,6 +165,7 @@ export default {
 
           if (res.data) {
             console.log(res.data)
+            this.emitter.emit('notification', { title: this.product.title, content: '已加入購物車' })
             this.emitter.emit('get-cart')
             resolve()
           } else {

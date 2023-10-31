@@ -31,7 +31,7 @@
                         <div>
                             <div class="d-flex justify-content-between">
                               <h5 class="card-title">{{ item.title }}</h5>
-                              <a href="#" class="text-dark" @click.prevent="addToFav(item.id)">
+                              <a href="#" class="text-dark" @click.prevent="addToFav(item)">
                                 <i class="bi bi-heart-fill card-like text-danger" v-if="favorited.indexOf(item.id) > -1"></i>
                                 <i class="bi bi-heart card-like" v-else></i>
                               </a>
@@ -131,15 +131,18 @@ export default {
         console.log(res.data)
         this.emitter.emit('get-cart')
         this.$refs.addToCartModal.hideModal()
+        this.emitter.emit('notification', { title: this.tempProduct.title, content: '已加入購物車' })
       })
     },
-    addToFav (id) {
-      const index = this.favorited.indexOf(id)
+    addToFav (item) {
+      const index = this.favorited.indexOf(item.id)
 
-      if (this.favorited.indexOf(id) < 0) {
-        this.favorited.push(id)
+      if (this.favorited.indexOf(item.id) < 0) {
+        this.favorited.push(item.id)
+        this.emitter.emit('notification', { title: item.title, content: '已加入我的最愛' })
       } else {
         this.favorited.splice(index, 1)
+        this.emitter.emit('notification', { title: item.title, content: '已從我的最愛移除' })
       }
 
       localStorage.setItem('favoriteItem', JSON.stringify(this.favorited))
