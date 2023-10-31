@@ -120,6 +120,7 @@ export default {
       }
     }
   },
+  inject: ['emitter'],
   methods: {
     getCart () {
       this.isLoading = true
@@ -145,6 +146,7 @@ export default {
         console.log(res.data)
 
         this.$router.push(`/checkout/${res.data.orderId}`)
+        this.emitter.emit('get-cart')
       })
     }
   },
