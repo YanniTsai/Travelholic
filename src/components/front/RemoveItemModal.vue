@@ -6,7 +6,7 @@
           <h5 class="modal-title">刪除行程</h5>
         </div>
         <div class="modal-body">
-          <p>確定要刪除 {{ cartItem.title }} 嗎？</p>
+          <p>確定要刪除 {{ itemTitle }} 嗎？</p>
         </div>
         <div class="modal-footer">
           <button
@@ -27,11 +27,7 @@
 import Modal from 'bootstrap/js/dist/modal'
 
 export default {
-  props: {
-    cartItem: {
-      type: Object
-    }
-  },
+  props: ['itemTitle'],
   data () {
     return {
       modal: {}

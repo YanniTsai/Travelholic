@@ -75,7 +75,7 @@
             </div>
         </div>
     </div>
-    <RemoveItemModal ref="removeItemModal" :cartItem="tempItem" @remove-item="removeItem"></RemoveItemModal>
+    <RemoveItemModal ref="removeItemModal" :itemTitle="tempItemTitle" @remove-item="removeItem"></RemoveItemModal>
 </template>
 
 <script>
@@ -87,6 +87,7 @@ export default {
       cart: {},
       cartlength: 0,
       tempItem: {},
+      tempItemTitle: '',
       coupon_code: '',
       discont: false,
       isLoading: false
@@ -95,11 +96,6 @@ export default {
   components: {
     RemoveItemModal
   },
-  // watch: {
-  //   cart () {
-  //     this.cartlength = this.cart.carts.length
-  //   }
-  // },
   inject: ['emitter'],
   methods: {
     getCart () {
@@ -132,6 +128,7 @@ export default {
     },
     openRemoveModal (item) {
       this.tempItem = item
+      this.tempItemTitle = item.product.title
 
       this.$refs.removeItemModal.showModal()
     },
