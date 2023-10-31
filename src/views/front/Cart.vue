@@ -95,11 +95,12 @@ export default {
   components: {
     RemoveItemModal
   },
-  watch: {
-    cart () {
-      this.cartlength = this.cart.carts.length
-    }
-  },
+  // watch: {
+  //   cart () {
+  //     this.cartlength = this.cart.carts.length
+  //   }
+  // },
+  inject: ['emitter'],
   methods: {
     getCart () {
       this.isLoading = true
@@ -110,6 +111,7 @@ export default {
         console.log(res.data)
 
         this.cart = res.data.data
+        this.cartlength = this.cart.carts.length
       })
     },
     updateCart (item) {
@@ -143,6 +145,7 @@ export default {
         console.log(res.data)
 
         this.$refs.removeItemModal.hideModal()
+        this.emitter.emit('get-cart')
         this.getCart()
       })
     },
