@@ -58,7 +58,7 @@
   <div class="subscribe text-nowrap d-flex align-items-center">
     <div class="col-md-6 p-4">
       <h4 class="mb-3">訂閱電子報，立即取得整單9折優惠！</h4>
-      <form class="form" @submit="subscribe" ref="subscribe">
+      <form class="form" @submit.prevent="subscribe" ref="subscribe">
         <div class="input-group">
           <input type="email" id="Email" class="form-control" placeholder="請輸入Email" required>
           <button type="submit" class="btn btn-secondary">訂閱電子報</button>
@@ -96,25 +96,3 @@ export default {
   }
 }
 </script>
-
-<style lang="scss">
-
- .info-left{
-    // position: relative;
-  // background-image: url();
-  overflow: hidden;
-  background-size: cover;
-  background-position: center center;
-  background-attachment: fixed;
- }
- .content-left{
-    width: 450px;
-    padding: 15px;
-    color: #513a31;
-    background: #ffffff46;
-    border-radius: 5%;
-    position: absolute;
-    left: 50px;
-    bottom: 50px;
- }
-</style>
