@@ -156,6 +156,8 @@ export default {
 
       // 根據所選類別進行資料過濾
       /* eslint-disable */
+      this.currentPage = 0
+
       tempData = this.products.filter((item) => {
         if (this.filter === '') {
           return this.products
