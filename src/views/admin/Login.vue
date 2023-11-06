@@ -57,7 +57,7 @@ export default {
           // 將 token, expired 儲存至 cookie
           document.cookie = `token=${token}; expires=${new Date(expired)}`
 
-          this.$router.push('/dashboard')
+          this.$router.push('/dashboard/products')
         }
       })
     }
